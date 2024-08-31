@@ -1,0 +1,74 @@
+Entities:
+
+Gymnasium
+Attributes:
+GymID (Primary Key)
+Name
+Address
+PhoneNumber
+
+
+Member
+Attributes:
+MemberID (Primary Key)
+LastName
+FirstName
+Address
+DateOfBirth
+Gender
+Relationships:
+RegistersAt: Each member registers at one gymnasium (1-to-1 or many-to-1 relationship with Gymnasium).
+
+
+Session
+Attributes:
+SessionID (Primary Key)
+SportType
+Schedule
+Relationships:
+HeldAt: Each session is held at one gymnasium (many-to-1 relationship with Gymnasium).
+AttendedBy: Members can attend sessions (many-to-many relationship with Member).
+LedBy: Sessions are led by a maximum of two coaches (many-to-many relationship with Coach).
+
+
+Coach
+Attributes:
+CoachID (Primary Key)
+LastName
+FirstName
+Age
+Specialty
+
+
+
+Relationships:
+RegistersAt:
+Between Member and Gymnasium.
+Cardinality: A member registers at exactly one gymnasium, and a gymnasium can have many members.
+Representation: Member (n) — RegistersAt — (1) Gymnasium
+
+
+HeldAt:
+Between Session and Gymnasium.
+Cardinality: A session is held at one gymnasium, and a gymnasium can host many sessions.
+Representation: Session (n) — HeldAt — (1) Gymnasium
+
+
+AttendedBy:
+Between Session and Member.
+Cardinality: A session can have up to 20 members, and a member can attend multiple sessions.
+Representation: Session (n) — AttendedBy — (m) Member
+
+
+LedBy:
+Between Session and Coach.
+Cardinality: A session can be led by up to two coaches, and a coach can lead multiple sessions.
+Representation: Session (1) — LedBy — (n) Coach
+
+
+ERD Diagram Overview:
+Gymnasium is connected to Member through the RegistersAt relationship.
+Gymnasium is connected to Session through the HeldAt relationship.
+Session is connected to Member through the AttendedBy relationship.
+Session is connected to Coach through the LedBy relationship.
+This ERD captures the key relationships and attributes necessary to model the gym management system described in your scenario.
